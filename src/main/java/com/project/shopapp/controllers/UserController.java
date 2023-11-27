@@ -12,7 +12,7 @@ import com.project.shopapp.dtos.UserLoginDTO;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("api/v1/users")
+@RequestMapping("${api.prefix}/users")
 public class UserController {
     @PostMapping("/register")
     public ResponseEntity<?> createUser(
