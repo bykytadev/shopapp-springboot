@@ -1,12 +1,17 @@
 package com.project.shopapp.dtos;
 
+import java.time.LocalDate;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.*;
 import lombok.*;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class OrderDTO {
+
     @JsonProperty("user_id")
     @Min(value = 1, message = "User's ID must be > 0")
     private Long userId;
@@ -35,8 +40,10 @@ public class OrderDTO {
     @JsonProperty("shipping_address")
     private String shippingAddress;
 
+    @JsonProperty("shipping_date")
+    private LocalDate shippingDate;
+
     @JsonProperty("payment_method")
     private String paymentMethod;
-
 
 }

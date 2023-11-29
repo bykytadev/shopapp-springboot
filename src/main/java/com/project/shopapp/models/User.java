@@ -7,7 +7,8 @@ import lombok.*;
 
 @Entity
 @Table(name = "users")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -28,6 +29,7 @@ public class User extends BaseEntity{
     @Column(name = "password", length = 200, nullable = false)
     private String password;
 
+    @Column(name = "is_active")
     private boolean active;
 
     @Column(name = "date_of_birth")
