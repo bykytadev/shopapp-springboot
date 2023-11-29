@@ -21,6 +21,9 @@ spring:
 api:
   prefix: api/v1
 
+jwt:
+  expiration: 2592000 #30 days = 30 * 24 * 60 * 60
+  secretKey: i5jZU8Zkw8b8Nz20JHORnRjN2lIpCPGzk6IF/yg0h3c=
 
 
 # http://localhost:8080/swagger-ui/index.html#/
