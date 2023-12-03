@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 import com.project.shopapp.dtos.*;
 import com.project.shopapp.exceptions.DataNotFoundException;
 import com.project.shopapp.models.*;
+import com.project.shopapp.models.Oders.Order;
+import com.project.shopapp.models.Oders.OrderDetail;
+import com.project.shopapp.models.Products.Product;
 import com.project.shopapp.repositories.*;
 
 import lombok.RequiredArgsConstructor;

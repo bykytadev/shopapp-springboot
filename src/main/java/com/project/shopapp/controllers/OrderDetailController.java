@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.project.shopapp.dtos.OrderDetailDTO;
 import com.project.shopapp.exceptions.DataNotFoundException;
-import com.project.shopapp.models.OrderDetail;
+import com.project.shopapp.models.Oders.OrderDetail;
 import com.project.shopapp.responses.OrderDetailResponse;
 import com.project.shopapp.services.orderdetail.OrderDetailService;
 

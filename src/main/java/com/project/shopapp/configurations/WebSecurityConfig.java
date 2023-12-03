@@ -16,7 +16,6 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import java.util.Arrays;
 import java.util.List;
@@ -25,7 +24,6 @@ import static org.springframework.http.HttpMethod.*;
 
 @Configuration
 @EnableWebSecurity
-@EnableWebMvc
 @RequiredArgsConstructor
 public class WebSecurityConfig {
         private final JwtTokenFilter jwtTokenFilter;
@@ -40,7 +38,9 @@ public class WebSecurityConfig {
                                         requests
                                                         .requestMatchers(
                                                                         String.format("%s/users/register", apiPrefix),
-                                                                        String.format("%s/users/login", apiPrefix))
+                                                                        String.format("%s/users/login", apiPrefix),
+                                                                        String.format("%s/healthcheck/**", apiPrefix))
+
                                                         .permitAll()
 
                                                         .requestMatchers(GET,

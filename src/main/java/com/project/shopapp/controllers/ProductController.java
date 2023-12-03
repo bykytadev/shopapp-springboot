@@ -24,8 +24,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.project.shopapp.dtos.ProductDTO;
 import com.project.shopapp.dtos.ProductImageDTO;
-import com.project.shopapp.models.Product;
-import com.project.shopapp.models.ProductImage;
+import com.project.shopapp.models.Products.Product;
+import com.project.shopapp.models.Products.ProductImage;
 import com.project.shopapp.responses.ProductListResponse;
 import com.project.shopapp.responses.ProductResponse;
 import com.project.shopapp.services.product.IProductService;

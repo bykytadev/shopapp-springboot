@@ -8,7 +8,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import com.project.shopapp.dtos.OrderDTO;
-import com.project.shopapp.models.Order;
+import com.project.shopapp.models.Oders.Order;
 import com.project.shopapp.services.order.IOrderService;
 
 import jakarta.validation.Valid;

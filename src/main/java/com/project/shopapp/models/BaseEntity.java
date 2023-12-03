@@ -7,7 +7,7 @@ import lombok.Data;
 
 @Data
 @MappedSuperclass
-public class BaseEntity{
+public class BaseEntity {
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 

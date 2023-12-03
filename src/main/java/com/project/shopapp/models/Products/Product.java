@@ -1,4 +1,7 @@
-package com.project.shopapp.models;
+package com.project.shopapp.models.Products;
+
+import com.project.shopapp.models.BaseEntity;
+import com.project.shopapp.models.Category;
 
 import jakarta.persistence.*;
 import lombok.*;

@@ -18,6 +18,12 @@ spring:
     multipart:
       max-file-size: 10MB
       max-request-size: 10MB
+  devtools:
+    livereload:
+      enabled: true
+  security:
+    csrf:
+      enabled: false
 api:
   prefix: api/v1
 
@@ -27,3 +33,18 @@ jwt:
 
 
 # http://localhost:8080/swagger-ui/index.html#/
+
+
+#health check
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      base-path: /api/v1/actuator
+      exposure:
+        include: "health"
+
+
+

@@ -1,7 +1,9 @@
-package com.project.shopapp.models;
+package com.project.shopapp.models.Oders;
 
 import java.time.LocalDate;
 import java.util.Date;
+
+import com.project.shopapp.models.User;
 
 import jakarta.persistence.*;
 import lombok.*;

@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import com.project.shopapp.dtos.*;
 import com.project.shopapp.exceptions.*;
 import com.project.shopapp.models.*;
+import com.project.shopapp.models.Products.Product;
+import com.project.shopapp.models.Products.ProductImage;
 import com.project.shopapp.repositories.*;
 import com.project.shopapp.responses.ProductResponse;
 

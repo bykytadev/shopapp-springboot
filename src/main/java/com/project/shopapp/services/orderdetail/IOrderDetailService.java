@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.project.shopapp.dtos.OrderDetailDTO;
 import com.project.shopapp.exceptions.DataNotFoundException;
-import com.project.shopapp.models.OrderDetail;
+import com.project.shopapp.models.Oders.OrderDetail;
 
 public interface IOrderDetailService {
     OrderDetail createOrderDetail(OrderDetailDTO newOrderDetail) throws Exception;
