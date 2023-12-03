@@ -1,5 +1,7 @@
 package com.project.shopapp.services.product;
 
+import java.util.List;
+
 import org.springframework.data.domain.*;
 
 import com.project.shopapp.dtos.ProductDTO;
@@ -13,7 +15,8 @@ public interface IProductService {
 
     Product getProductById(long id) throws Exception;
 
-    Page<ProductResponse> getAllProducts(PageRequest pageRequest);
+    public Page<ProductResponse> getAllProducts(String keyword,
+            Long categoryId, PageRequest pageRequest);
 
     Product updateProduct(long id, ProductDTO productDTO) throws Exception;
 
@@ -21,6 +24,9 @@ public interface IProductService {
 
     boolean existsByName(String name);
 
-    ProductImage createProductImage(Long productId, ProductImageDTO productImageDTO) throws Exception;
+    ProductImage createProductImage(
+            Long productId,
+            ProductImageDTO productImageDTO) throws Exception;
 
+    List<Product> findProductsByIds(List<Long> productIds);
 }

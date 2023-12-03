@@ -10,6 +10,8 @@ import com.project.shopapp.exceptions.DataNotFoundException;
 import com.project.shopapp.models.Oders.OrderDetail;
 import com.project.shopapp.responses.OrderDetailResponse;
 import com.project.shopapp.services.orderdetail.OrderDetailService;
+import com.project.shopapp.utils.LocalizationUtils;
+import com.project.shopapp.utils.MessageKeys;
 
 import jakarta.validation.*;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +21,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class OrderDetailController {
     private final OrderDetailService orderDetailService;
+    private final LocalizationUtils localizationUtils;
 
     // Thêm mới 1 order detail
     @PostMapping("")
@@ -38,7 +41,6 @@ public class OrderDetailController {
             @Valid @PathVariable("id") Long id) throws DataNotFoundException {
         OrderDetail orderDetail = orderDetailService.getOrderDetail(id);
         return ResponseEntity.ok().body(OrderDetailResponse.fromOrderDetail(orderDetail));
-        // return ResponseEntity.ok(orderDetail);
     }
 
     // lấy ra danh sách các order_details của 1 order nào đó
@@ -69,7 +71,8 @@ public class OrderDetailController {
     public ResponseEntity<?> deleteOrderDetail(
             @Valid @PathVariable("id") Long id) {
         orderDetailService.deleteById(id);
-        return ResponseEntity.ok().body("Delete Order detail with id : " + id + " successfully");
-        // return ResponseEntity.noContent().build();
+        return ResponseEntity.ok()
+                .body(localizationUtils
+                        .getLocalizedMessage(MessageKeys.DELETE_ORDER_DETAIL_SUCCESSFULLY));
     }
 }

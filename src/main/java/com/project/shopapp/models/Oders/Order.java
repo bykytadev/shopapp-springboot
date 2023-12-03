@@ -1,8 +1,9 @@
 package com.project.shopapp.models.Oders;
 
 import java.time.LocalDate;
-import java.util.Date;
+import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.project.shopapp.models.User;
 
 import jakarta.persistence.*;
@@ -39,13 +40,13 @@ public class Order {
     private String note;
 
     @Column(name = "order_date")
-    private Date orderDate;
+    private LocalDate orderDate;
 
     @Column(name = "status")
     private String status;
 
     @Column(name = "total_money")
-    private Integer totalMoney;
+    private Float totalMoney;
 
     @Column(name = "shipping_method")
     private String shippingMethod;
@@ -63,6 +64,9 @@ public class Order {
     private String paymentMethod;
 
     @Column(name = "active")
-    private Boolean active; // thuộc về admin
+    private Boolean active;// thuộc về admin
 
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private List<OrderDetail> orderDetails;
 }

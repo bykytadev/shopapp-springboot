@@ -1,5 +1,7 @@
 package com.project.shopapp.models.Products;
 
+import java.util.List;
+
 import com.project.shopapp.models.BaseEntity;
 import com.project.shopapp.models.Category;
 
@@ -13,7 +15,9 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Product extends BaseEntity{
+@EntityListeners(ProductListener.class) // Event-driven approach with Spring Data JPA
+public class Product extends BaseEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -32,4 +36,8 @@ public class Product extends BaseEntity{
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<ProductImage> productImages;
+
 }
