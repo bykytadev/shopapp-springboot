@@ -17,6 +17,7 @@ import com.project.shopapp.services.category.CategoryService;
 import com.project.shopapp.utils.LocalizationUtils;
 import com.project.shopapp.utils.MessageKeys;
 
+import jakarta.annotation.security.PermitAll;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 

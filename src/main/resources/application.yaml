@@ -18,28 +18,30 @@ spring:
     multipart:
       max-file-size: 10MB
       max-request-size: 10MB
-  redis:
-    host: ${REDIS_HOST:localhost} # Default to 'localhost' if not provided
-    port: ${REDIS_PORT:6379}      # Default to 6379 if not provided
   messages:
     basename: i18n/messages
     encoding: UTF-8
     default-locale: en
-  devtools:
-    livereload:
-      enabled: true
   security:
     csrf:
       enabled: false
 api:
   prefix: api/v1
 
+# swagger-ui custom path
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /api-docs
+  show-actuator: true
+
 jwt:
   expiration: 2592000 #30 days = 30 * 24 * 60 * 60
   secretKey: i5jZU8Zkw8b8Nz20JHORnRjN2lIpCPGzk6IF/yg0h3c=
 
 
-# http://localhost:8080/swagger-ui/index.html#/
+# http://localhost:8080/swagger-ui/index.html
 
 
 #health check
@@ -53,4 +55,3 @@ management:
       exposure:
         include: "health"
 
-logging.level.org.springframework.security: DEBUG

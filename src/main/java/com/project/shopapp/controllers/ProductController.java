@@ -35,7 +35,6 @@ import com.project.shopapp.models.Products.Product;
 import com.project.shopapp.models.Products.ProductImage;
 import com.project.shopapp.responses.ProductListResponse;
 import com.project.shopapp.responses.ProductResponse;
-import com.project.shopapp.services.product.IProductRedisService;
 import com.project.shopapp.services.product.IProductService;
 import com.project.shopapp.utils.LocalizationUtils;
 import com.project.shopapp.utils.MessageKeys;
@@ -50,7 +49,6 @@ public class ProductController {
     private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
     private final IProductService productService;
     private final LocalizationUtils localizationUtils;
-    private final IProductRedisService productRedisService;
 
     @PostMapping("")
     public ResponseEntity<?> createProduct(
@@ -170,23 +168,16 @@ public class ProductController {
         // Tạo Pageable từ thông tin trang và giới hạn
         PageRequest pageRequest = PageRequest.of(
                 page, limit,
-                // Sort.by("createdAt").descending()
                 Sort.by("id").ascending());
         logger.info(String.format("keyword = %s, category_id = %d, page = %d, limit = %d",
                 keyword, categoryId, page, limit));
-        List<ProductResponse> productResponses = productRedisService
-                .getAllProducts(keyword, categoryId, pageRequest);
+        List<ProductResponse> productResponses = null;
         if (productResponses == null) {
             Page<ProductResponse> productPage = productService
                     .getAllProducts(keyword, categoryId, pageRequest);
             // Lấy tổng số trang
             totalPages = productPage.getTotalPages();
             productResponses = productPage.getContent();
-            productRedisService.saveAllProducts(
-                    productResponses,
-                    keyword,
-                    categoryId,
-                    pageRequest);
         }
 
         return ResponseEntity.ok(ProductListResponse

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import com.project.shopapp.models.Category;
 import com.project.shopapp.services.category.CategoryService;
 
+import jakarta.annotation.security.PermitAll;
 import lombok.AllArgsConstructor;
 
 @RestController
@@ -17,6 +18,7 @@ import lombok.AllArgsConstructor;
 public class HealthCheckController {
     private final CategoryService categoryService;
 
+    @PermitAll
     @GetMapping("/health")
     public ResponseEntity<?> healthCheck() {
         // Perform additional health checks here
