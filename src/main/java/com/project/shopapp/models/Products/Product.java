@@ -15,7 +15,6 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@EntityListeners(ProductListener.class) // Event-driven approach with Spring Data JPA
 public class Product extends BaseEntity {
 
     @Id

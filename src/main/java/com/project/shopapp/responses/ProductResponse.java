@@ -10,6 +10,7 @@ import com.project.shopapp.models.Products.ProductImage;
 import lombok.*;
 
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -19,6 +20,8 @@ public class ProductResponse extends BaseResponse {
     private Float price;
     private String thumbnail;
     private String description;
+    private int totalPages;
+
     @JsonProperty("product_images")
     private List<ProductImage> productImages = new ArrayList<>();
 

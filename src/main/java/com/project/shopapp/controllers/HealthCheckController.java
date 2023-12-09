@@ -16,16 +16,15 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class HealthCheckController {
     private final CategoryService categoryService;
-
     @GetMapping("/health")
     public ResponseEntity<?> healthCheck() {
         // Perform additional health checks here
         try {
             List<Category> categories = categoryService.getAllCategories();
             // Get the computer name
-            String computerName = InetAddress.getLocalHost().getHostName();
-            return ResponseEntity.ok("ok, Computer Name: " + computerName);
-        } catch (Exception e) {
+            String computerName = InetAddress.getLocalHost().getHostName();        
+            return ResponseEntity.ok("ok, Computer Name: " + computerName);            
+        }catch (Exception e) {
             return ResponseEntity.badRequest().body("failed");
         }
     }
