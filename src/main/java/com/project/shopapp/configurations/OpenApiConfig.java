@@ -22,12 +22,12 @@ import io.swagger.v3.oas.annotations.servers.Server;
         ),
         servers = {
                 @Server(url = "http://localhost:8080", description = "Local Development Server"),
-                @Server(url = "http://27.75.189.155:8080", description = "Production Server"),
+                @Server(url = "http://171.239.86.22:8080", description = "Production Server"),
         }
 )
 
 @SecurityScheme(
-        name = "bearer-key", // Can be any name, used to reference this scheme in the @SecurityRequirement annotation
+        name = "bearer-key", 
         type = SecuritySchemeType.HTTP,
         scheme = "bearer",
         bearerFormat = "JWT",

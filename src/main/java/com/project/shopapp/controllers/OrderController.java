@@ -30,6 +30,7 @@ public class OrderController {
     private final LocalizationUtils localizationUtils;
 
     @PostMapping("")
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
     public ResponseEntity<?> createOrder(
             @Valid @RequestBody OrderDTO orderDTO,
             BindingResult result) {
@@ -48,7 +49,7 @@ public class OrderController {
         }
     }
 
-    @GetMapping("/user/{user_id}") // Thêm biến đường dẫn "user_id"
+    @GetMapping("/user/{user_id}")
     public ResponseEntity<?> getOrders(@Valid @PathVariable("user_id") Long userId) {
         try {
             List<Order> orders = orderService.findByUserId(userId);
@@ -70,11 +71,11 @@ public class OrderController {
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     // công việc của admin
     public ResponseEntity<?> updateOrder(
             @Valid @PathVariable long id,
             @Valid @RequestBody OrderDTO orderDTO) {
-
         try {
             Order order = orderService.updateOrder(id, orderDTO);
             return ResponseEntity.ok(order);
@@ -84,6 +85,7 @@ public class OrderController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> deleteOrder(@Valid @PathVariable Long id) {
         // xóa mềm => cập nhật trường active = false
         orderService.deleteOrder(id);
@@ -93,7 +95,6 @@ public class OrderController {
     }
 
     @GetMapping("/get-orders-by-keyword")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<OrderListResponse> getOrdersByKeyword(
             @RequestParam(defaultValue = "", required = false) String keyword,
             @RequestParam(defaultValue = "0") int page,

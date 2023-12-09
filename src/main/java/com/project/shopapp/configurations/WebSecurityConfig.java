@@ -1,28 +1,27 @@
 package com.project.shopapp.configurations;
 
 import com.project.shopapp.filters.JwtTokenFilter;
-
 import lombok.RequiredArgsConstructor;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.actuate.autoconfigure.security.reactive.EndpointRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
-import org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import static org.springframework.http.HttpMethod.*;
 
 @Configuration
-@EnableWebSecurity(debug = false)
-@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
+@EnableWebSecurity(debug = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableWebMvc
 @RequiredArgsConstructor
-public class WebSecurityConfig extends GlobalMethodSecurityConfiguration {
+public class WebSecurityConfig {
         private final JwtTokenFilter jwtTokenFilter;
         @Value("${api.prefix}")
         private String apiPrefix;
@@ -38,11 +37,7 @@ public class WebSecurityConfig extends GlobalMethodSecurityConfiguration {
                                                                         String.format("%s/users/login", apiPrefix),
                                                                         // healthcheck
                                                                         String.format("%s/healthcheck/**", apiPrefix),
-                                                                        String.format("%s/healthcheck/health", apiPrefix), // Add this line
-
                                                                         // swagger
-                                                                        // "/v3/api-docs",
-                                                                        // "/v3/api-docs/**",
                                                                         "/api-docs",
                                                                         "/api-docs/**",
                                                                         "/swagger-resources",
@@ -86,6 +81,7 @@ public class WebSecurityConfig extends GlobalMethodSecurityConfiguration {
                                 })
                                 .csrf(AbstractHttpConfigurer::disable);
                 http.securityMatcher(String.valueOf(EndpointRequest.toAnyEndpoint()));
+
 
                 return http.build();
         }
